@@ -1,0 +1,317 @@
+{% assign id = section.id %}
+
+<style>
+    .custom__feedback{{ section.id }} {
+       margin-top: {{ section.settings.margin_top }}px;
+       margin-bottom: {{ section.settings.margin_bottom }}px;
+       padding-top: {{ section.settings.padding_top }}px;
+       padding-bottom: {{ section.settings.padding_bottom }}px;
+       /* background-image: url("{{ section.settings.bg_img | image_url: width: section.settings.bg_img.width }}"); */
+       background-repeat: no-repeat;
+       background-position: center;
+       background-size: cover;
+       background-color: #B8D6F4;
+      }
+    .cf__container.page-width {
+      max-width: 900px;
+    }
+    .cf__container {
+      padding: 0 0;
+    }
+    .tik-{{ id }} {
+      display: flex;
+      /* align-items: center; */
+      justify-content: center;
+    }
+    .tik-{{ id }} svg{
+      width: 70px;
+      height: 55px;
+      margin-block: 38px;
+      opacity: 80%;
+      /* filter: contrast(0.5); */
+    }
+    .cf__container h2 {
+      font-size: 30px;
+      color: rgb(0, 173, 189);
+      text-align: center;
+      line-height: 34px;
+      font-weight: 500;
+      margin: 0;
+    }
+    .cf__container .cf__desc {
+      color: rgb(3, 72, 114);
+      font-size: 19px;
+      line-height: 19px;
+      font-weight: 600;
+      letter-spacing: normal;
+      text-align: center;
+    }
+    .cf__content-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      padding: 30px 0 50px 0;
+    }
+    .cf_-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+    }
+    .cf_-content h1{
+      margin: 0;
+      font-size: 75px;
+      font-weight: 600;
+      color: rgb(65, 116, 186);
+    }
+    .cf_-content h3 {
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3em;
+      text-align: center;
+      margin: 0;
+    }
+    .cf__rte {
+        color: rgb(40, 94, 149);
+        line-height: 18.2px;
+        font-size: 12px;
+        text-align: justify;
+    }
+    .cf__rte p {
+        /* max-width: 1005px; */
+        margin: auto;
+        color: #285E95;
+        font-size:9px;
+    }
+
+  @media screen and (max-width: 890px){
+   .custom__feedback{{ section.id }} {
+       margin-top: {{ section.settings.margin_top-m }}px;
+       margin-bottom: {{ section.settings.margin_bottom-m }}px;
+       padding-top: {{ section.settings.padding_top-m }}px;
+       padding-bottom: {{ section.settings.padding_bottom-padding_bottom-m }}px;
+       /* background-image: url("https://cdn.shopify.com/s/files/1/0627/6585/8972/files/Frame_4.svg?v=1712052691") */
+    }
+    .cf__container h2 {
+        font-size: 21px;
+        line-height: 25px;
+        letter-spacing: 0.63px;
+        max-width: 90%;
+        margin: auto;
+    }
+    .cf_-content{
+      gap: 10px;
+    }
+    .cf__content-wrapper {
+      grid-template-columns: repeat(2,1fr);
+      gap: 20px;
+    }
+    .cf_-content h1{
+      font-size: 36px;
+      font-weight: 700;
+    }
+    .cf_-content h3{
+      font-size: 16px;
+      line-height: 22px;
+    }
+    .cf__container .cf__desc {
+      font-size: 14px;
+      line-height: 14px;
+      width: 90%;
+      margin:10px auto;
+      text-align: center;
+    }
+    .cf__content-wrapper {
+      /* border-bottom: 1px solid #00000036; */
+      margin-bottom: 20px;
+      padding: 20px 0 20px 0;
+    }
+    .cf__content-wrapper .cf_-content:not(:first-child) {
+      border-left: unset;
+    }
+    .cf__rte {
+      font-size: 9px;
+      line-height: 11px;
+      font-weight: normal;
+    }
+    .cf__rte p {
+        text-align: center;
+    }
+  }
+</style>
+
+<section class="custom__feedback{{ section.id }}">
+  <div class="cf__container page-width">
+    <div class="tik-{{ id }}">{% render 'all-icons', name: 'blue-tik-2' %}</div>
+    <h2>{{ section.settings.title }}</h2>
+    <p class="cf__desc">{{ section.settings.desc }}</p>
+    <div class="cf__content-wrapper">
+      {% for block in section.blocks %}
+        <div
+          class="cf_-content"
+          data-aos="fade-up"
+          data-aos-duration="500"
+          {% if forloop.index == 1 %}
+            data-aos-delay="200"
+          {% elsif forloop.index == 2 %}
+            data-aos-delay="350"
+          {% elsif forloop.index == 4 %}
+            data-aos-delay="400"
+          {% elsif forloop.index == 5 %}
+            data-aos-delay="250"
+          {% endif %}
+        >
+          <h1>{{ block.settings.big_text }}</h1>
+          <h3>{{ block.settings.title }}</h3>
+        </div>
+      {% endfor %}
+    </div>
+    <small class="cf__rte">{{ section.settings.rte }}</small>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Custom feedback",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "bg_img",
+      "label": "Background Image"
+    },
+    {
+      "id": "title",
+      "type": "text",
+      "label": "Add Title"
+    },
+    {
+      "id": "desc",
+      "type": "text",
+      "label": "Add Description"
+    },
+    {
+      "id": "rte",
+      "type": "richtext",
+      "label": "Add caution"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 4
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 8
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 0
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Text",
+      "type": "Text",
+      "settings": [
+          {
+            "id": "title",
+            "type": "text",
+            "label": "Add Hero title"
+          },
+          {
+            "id": "big_text",
+            "type": "text",
+            "label": "Add Percentage"
+          }
+      ]
+    }
+  ],
+
+  "presets":[
+    {
+      "name": "Custom feedback"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

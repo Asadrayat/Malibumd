@@ -1,0 +1,289 @@
+{% assign id = section.id %}
+<style>
+      .section-container--{{ section.id }}{
+        margin-top: {{ section.settings.margin_top | append:'px' }};
+        margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+        padding-top: {{ section.settings.padding_top | append:'px' }};
+        padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+        overflow: hidden;
+        background: {{ section.settings.bg-color}};
+        text-align: center;
+        position: relative;
+        opacity: 0;
+        transition: 1s;
+      }
+      .show-section{
+        opacity: 1;
+      }
+     .section-container--{{ section.id }} h1 {
+      font-size: 38px;
+      /* font-family: playfair display,serif; */
+      color: rgb(3, 72, 114);
+      margin-block: 0 75px;
+      font-weight: 600;
+     }
+     .section-container--{{ section.id }} h5 {
+        font-size: 13px;
+        color: #034872;
+        margin-block: 0;
+        margin-bottom: 50px;
+    }
+    .left-wave {
+      position: absolute;
+      top: 0;
+      left: 0px;
+      transition: 1s ease;
+    }
+    .right-wave {
+      position: absolute;
+      top: 0;
+      right: 0px;
+      transition: 1s ease;
+    }
+
+    .hide-left-box {
+      left: -200px;
+    }
+    .hide-right-box {
+      right: -200px;
+    }
+  /* Search inp style starts here  */
+    .search-icon-{{ id }} {
+      position: absolute;
+      top: 50%;
+      right: 0px;
+      width: 13px;
+      transform: translate(-15px, -13px);
+    }
+     .search-icon-{{ id }} svg{
+      fill: #81BECE;
+    }
+     .search-icon-{{ id }} svg path{
+      fill: #81BECE;
+    }
+    .search-form-{{ id }} {
+    position: relative;
+    max-width: 924px;
+    margin: auto;
+    }
+    .search-form-{{ id }} input{
+      width: 100%;
+      height: 46px;
+      border-radius: 30px;
+      border: none;
+      background: #fff;
+      padding-left: 25px;
+    }
+
+    .search-form-{{ id }} input::placeholder{
+      color: #adadad;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+    }
+    .search-form-{{ id }} input:focus{
+      background: #fff;
+    }
+    .search-form-{{ id }} input:hover{
+      background: #fff;
+    }
+    .search-form-{{ id }}:hover svg{
+      fill: #81BECE;
+    }
+
+  /* Search inp style ends here  */
+      @media screen and (max-width: 768px){
+        .section-container--{{ section.id }}{
+          margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+          margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+          padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+          padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+        }
+    .section-container--{{ section.id }} h1 {
+        font-size: 22px;
+        margin-block: 0 30px;
+    }
+    .section-container--{{ section.id }} h5 {
+        max-width: 250px;
+        margin: 20px auto;
+        font-weight: 500;
+    }
+    .search-form-{{ id }} input{
+      height: 36px;
+    }
+      }
+</style>
+<section class="section-container--{{ section.id }}">
+  <h1>{{ section.settings.title }}</h1>
+  <div class="left-wave">{{ section.settings.left_image | img_url: 'master' | img_tag }}</div>
+  <div class="right-wave">{{ section.settings.right_image | img_url: 'master' | img_tag }}</div>
+  <div class="section-wrapper--{{ section.id }} page-width">
+    <!-- asad code start -->
+    <div class="search-form-{{ id }}">
+      <input type="text" class="search-input" id="searchInput" placeholder="{{ section.settings.placeholder }}">
+      <div class="search-icon-{{ id }}" onclick="search()">{{ section.settings.icon_search }}</div>
+    </div>
+    <!-- asad code end -->
+  </div>
+</section>
+
+<script>
+  let options = {
+    threshold : .5
+  }
+   const wave_observer = new IntersectionObserver((entries) => {
+     entries.forEach(entry => {
+       let x = entry.target.querySelector('.left-wave')
+       let y = entry.target.querySelector('.right-wave')
+       let z = entry.target
+       console.log(z)
+       if(entry.isIntersecting) {
+         x.classList.add('hide-left-box');
+         y.classList.add('hide-right-box');
+         z.classList.add('show-section');
+       } else {
+         x.classList.remove('hide-left-box');
+         y.classList.remove('hide-right-box');
+         z.classList.remove('show-section');
+       }
+
+     });
+   },options);
+
+
+   const wave = document.querySelector('.section-container--{{ section.id }}');
+
+   wave_observer.observe(wave);
+</script>
+
+{% schema %}
+{
+  "name": "Mali Search CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Add placeholder"
+    },
+    {
+      "id": "icon_search",
+      "type": "html",
+      "label": "Add Icon Search"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Mali Search Support"
+    }
+  ]
+}
+{% endschema %}

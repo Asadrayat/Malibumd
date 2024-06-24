@@ -1,0 +1,522 @@
+<style>
+        .section-container--{{ section.id }}{
+          margin-top: {{ section.settings.margin_top | append:'px' }};
+          margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+          padding-top: {{ section.settings.padding_top | append:'px' }};
+          padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+          overflow: hidden;
+          position: relative;
+          background: #fafafa;
+        }
+        .form-{{ section.id }}{
+              max-width: 560px;
+              background: #ffffff;
+              padding: 10px 20px;
+              border-radius: 30px;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+        }
+        .form-{{ section.id }} h1 {
+          text-align: center;
+          margin:0;
+        }
+        .form-{{ section.id }} .ms_title {
+          font-size: 36px;
+          line-height: 33px;
+        }
+
+        .text-block--{{ section.id }} {
+            text-align: center;
+            margin-block: 10px;
+        }
+        .text-block--{{ section.id }} h1 {
+            margin: 0;
+            font-size: 56px;
+            font-weight: 500;
+            color: #034872;
+        }
+        .text-block--{{ section.id }} h3 {
+            color: #00aebf;
+            font-size: 29px;
+            font-weight: 500;
+            margin: 0;
+            position: relative;
+        }
+        .text-block--{{ section.id }} h3:after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 250px;
+            background: #ffc020;
+            left: 50%;
+            top: 20px;
+            transform: translateX(-50%);
+            z-index: -2;
+        }
+        .text-block--{{ section.id }} h4 {
+            margin: 0;
+            font-size: 15px;
+            color: #000000;
+            font-weight: 500;
+        }
+          .background-sliders-{{ section.id }} {
+
+          }
+
+          .image-block-{{ section.id }} {
+              position :relative;
+              min-height: 220px;
+              margin-block: 10px;
+          }
+          .image-block-{{ section.id }}  .image-slider-wrapper {
+              display: -webkit-inline-box;
+              align-items: center;
+              /* gap: 30px; */
+              position: absolute;
+              /* top: 50%; */
+              /* transform: translateY(-50%); */
+              /* overflow: hidden; */
+          }
+          .top-block-{{ section.id }} {
+            animation: xc 40s linear infinite;
+              @media screen and (max-width: 768px){
+                animation: xc 15s linear infinite;
+              }
+          }
+          .bottom-block-{{ section.id }} {
+            animation: xc 30s linear infinite;
+            @media screen and (max-width: 768px){
+                animation: xc 10s linear infinite;
+              }
+          }
+          @keyframes xc {
+            0% { left: -20%; }
+            100% { left: -100%;}
+          }
+          .image-block-{{ section.id }}  .image-slider-wrapper:hover {
+              animation-play-state: paused;
+          }
+          .image-block-{{ section.id }}  .slider-image {
+              border-radius: 20px;
+              overflow: hidden;
+              line-height: 0;
+              margin-right: 30px;
+          }
+          .image-block-{{ section.id }}  .slider-image img {
+              transition : 0.5s ease;
+          }
+          .image-block-{{ section.id }}  .slider-image:hover img {
+              transform : scale(1.1);
+          }
+     /* Icon Block Start  */
+    .icon-block-{{ section.id }} {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        background: #00AEBF;
+        padding: 0px 5px;
+        border-radius: 50px;
+    }
+    .single-block-{{ section.id }}{
+          display: flex;
+          align-items: center;
+    }
+      .contents-{{ section.id }} {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .single-block-{{ section.id }} svg {
+        grid-column: 1/2;
+        grid-row: 1/-1;
+        max-width: 30px;
+        max-height: 30px;
+        margin-right: 5px;
+    }
+    .single-block-{{ section.id }} h6 {
+        grid-column: 2/-1;
+        grid-row: 1/2;
+        margin-block: 0;
+        color: #ffffff;
+        font-size: 7px;
+        /* align-self: end; */
+    }
+    .single-block-{{ section.id }} h6 span {
+        color: #034872;
+        font-weight: 600;
+    }
+    .single-block-{{ section.id }}.address h6{
+        grid-row: 1/-1;
+        font-size: 9px;
+        font-weight: 600;
+    }
+    .single-block-{{ section.id }} p {
+        grid-column: 2/-1;
+        grid-row: 2/-1;
+        margin-block: 0;
+        color: #034872;
+        font-size: 12px;
+        font-weight: 600;
+        /* align-self: start; */
+    }
+     /* Icon Block End  */
+      .content--{{ section.id }} {
+        font-size: 12px;
+        line-height: 1.3em;
+        color: #000000;
+        text-align: justify;
+      }
+  .form-{{ section.id }} h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 56px;
+      color: #034872;
+      font-weight: 500;
+      margin-block: 10px;
+  }
+
+
+      @media screen and (max-width: 768px){
+      .section-container--{{ section.id }}{
+          margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+          margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+          padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+          padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+          background: #FAFAFA;
+      }
+      .section-wrapper--{{ section.id }}.page-width {
+          display: flex;
+          flex-direction: column-reverse;
+      }
+      .text-block--{{ section.id }} h1 {
+          font-size: 22px;
+      }
+      .text-block--{{ section.id }} h3 {
+          font-size: 20px;
+      }
+      .text-block--{{ section.id }} h3:after {
+          width: 200px;
+          top: 15px;
+      }
+      .text-block--{{ section.id }} h4 {
+          font-size: 13px;
+          max-width: 90%;
+          margin: 15px auto;
+      }
+      .image-block-{{ section.id }} {
+          min-height: 120px;
+        {% if section.settings.hide_image %}
+          display: none;
+        {% endif %}
+      }
+      .image-block-{{ section.id }}  .slider-image {
+          max-width: 150px;
+          max-height: 150px;
+      }
+  .icon-block-{{ section.id }} {
+        display: none;
+  }
+  .form-{{ section.id }}{
+      width: 100%;
+      border-radius: 30px;
+      /* background: aliceblue;   */
+      position: unset;
+      transform: unset;
+    {% if section.settings.hide_form %}
+      display: none;
+    {% endif %}
+  }
+  .form-{{ section.id }} h1 {
+      text-align: center;
+      margin: 0;
+      font-size: 32px;
+      color: #034872;
+      font-weight: 500;
+  }
+
+
+            }
+</style>
+<style></style>
+<section class="section-container--{{ section.id }} {% if section.settings.hide_section %} mobile-only {% endif %}">
+  <div class="section-wrapper--{{ section.id }} page-width">
+    <div class="background-sliders-{{ section.id }}">
+      <div class="image-block-{{ section.id }} top-block-{{ section.id }}">
+        <div class="image-slider-wrapper">
+          {% for i in (1..4) %}
+            {% for block in section.blocks %}
+              {% if block.type == 'top_row_image' %}
+                <div class="slider-image">
+                  {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="image-block-{{ section.id }} bottom-block-{{ section.id }}">
+        <div class="image-slider-wrapper">
+          {% for i in (1..4) %}
+            {% for block in section.blocks %}
+              {% if block.type == 'bottom_row_image' %}
+                <div class="slider-image">
+                  {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+      <div class="image-block-{{ section.id }} copied top-block-{{ section.id }}">
+        <div class="image-slider-wrapper">
+          {% for i in (1..4) %}
+            {% for block in section.blocks %}
+              {% if block.type == 'top_row_image' %}
+                <div class="slider-image">
+                  {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+                </div>
+              {% endif %}
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="form-{{ section.id }}">
+      <h1 class="ms_title">contact us</h1>
+      <div class="icon-block-{{ section.id }}">
+        <div class="single-block-{{ section.id }}">
+          {% render 'mali-all-icons', name: 'mail' %}
+          <div class="contents-{{ section.id }}">
+            <h6>{{ section.settings.label_1 }}</h6>
+            <p>{{ section.settings.content_1 }}</p>
+          </div>
+        </div>
+        <div class="single-block-{{ section.id }}">
+          {% render 'mali-all-icons', name: 'phone' %}
+          <div class="contents-{{ section.id }}">
+            <h6>{{ section.settings.label_2 }}</h6>
+            <p>{{ section.settings.content_2 }}</p>
+          </div>
+        </div>
+        <div class="single-block-{{ section.id }} address">
+          {% render 'mali-all-icons', name: 'return' %}
+          <div class="contents-{{ section.id }}">
+            <div class="contents-{{ section.id }} address">
+              <h6>
+                {{ section.settings.label_3 }}
+                <span>{{ section.settings.content_3 }}</span>
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content--{{ section.id }}">{{ section.settings.content }}</div>
+      {% render 'mali-support-form', id: section.id %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mali Banner Support",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type":  "header",
+      "content" : "Email "
+    },
+    {
+      "type": "text",
+      "id": "label_1",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "content_1",
+      "label": "Content"
+    },
+    {
+      "type":  "header",
+      "content" : "Contact Number"
+    },
+    {
+      "type": "text",
+      "id": "label_2",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "content_2",
+      "label": "Content"
+    },
+    {
+      "type":  "header",
+      "content" : "Address"
+    },
+    {
+      "type": "text",
+      "id": "label_3",
+      "label": "Label"
+    },
+    {
+      "type": "text",
+      "id": "content_3",
+      "label": "Content"
+    },
+
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color"
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide Section on Desktop",
+      "default": false
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_form",
+      "label": "Hide form on Mobile",
+      "default": false
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_image",
+      "label": "Hide Background Images on Mobile",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Top Row Image",
+      "type": "top_row_image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "name": "Bottom Row Image",
+      "type": "bottom_row_image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mali Banner Support"
+    }
+  ]
+}
+{% endschema %}

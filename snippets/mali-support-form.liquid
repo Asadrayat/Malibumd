@@ -1,0 +1,158 @@
+<style>
+  .mali-support-form{
+    max-width: 700px;
+    /* background: rebeccapurple; */
+    padding: 20px;
+    text-align: center;
+    margin: auto;
+  }
+.--field {
+    margin-block: 10px;
+}
+  .name--field {
+    display: flex;
+    gap: 10px;
+  }
+  .name--field input {
+    width: calc(50% - 5px);
+    padding: 10px;
+    border: 2px solid #03487273;
+    border-radius: 20px;
+  }
+  .mali-support-form input[type=email] {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #03487273;
+    border-radius: 20px;
+  }
+  .mali-support-form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #03487273;
+    border-radius: 20px;
+  }
+  .mali-support-form .contact__button {
+    transform: translateY(-30px);
+  }
+  .mali-support-form button.button {
+    width: 60%;
+    border-radius: 30px;
+    background: #034872;
+}
+  .mali-support-form button.button:before,
+  .mali-support-form button.button:after
+  {
+    content: none;
+  }
+
+  @media screen and (max-width: 764px){
+ .mali-support-form{
+    padding-inline: 0px;
+  }
+.name--field {
+  flex-direction: column;
+}
+.name--field input {
+  width: 100%;
+}
+.name--field input::placeholder ,
+.mali-support-form input[type=email]::placeholder ,
+.mali-support-form textarea::placeholder {
+    color: #034872bd;
+    font-size: 15px;
+}    
+.mali-support-form .contact__button {
+    transform: translateY(0px);
+}
+.mali-support-form button.button {
+    width: 100%;
+}
+}
+</style>
+
+{%- form 'contact', id: 'ContactForm', class: 'mali-support-form' -%}
+  {%- if form.posted_successfully? -%}
+    <h2 class="form-status form-status-list form__message" tabindex="-1" autofocus>
+      {% render 'icon-success' %}
+      {{ 'templates.contact.form.post_success' | t }}
+    </h2>
+  {%- elsif form.errors -%}
+    <div class="form__message">
+      <h2 class="form-status caption-large text-body" role="alert" tabindex="-1" autofocus>
+        {% render 'icon-error' %}
+        {{ 'templates.contact.form.error_heading' | t }}
+      </h2>
+    </div>
+    <ul class="form-status-list caption-large" role="list">
+      <li>
+        <a href="#ContactForm-email" class="link">
+          {{ form.errors.translated_fields.email | capitalize }}
+          {{ form.errors.messages.email }}
+        </a>
+      </li>
+    </ul>
+  {%- endif -%}
+  <div class="--contact__fields">
+    <div class="--field name--field">
+      <input
+        autocomplete="first_name"
+        type="text"
+        id="ContactForm-name"
+        name="contact[first_name]"
+        value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+        placeholder="First Name"
+      >
+      <input
+        autocomplete="last_name"
+        type="text"
+        id="ContactForm-lastname"
+        name="contact[last_name]"
+        value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}"
+        placeholder="Last Name"
+      >
+    </div>
+
+    <div class="--field field--with-error">
+      <input
+        autocomplete="email"
+        type="email"
+        id="ContactForm-email"
+        name="contact[email]"
+        spellcheck="false"
+        autocapitalize="off"
+        value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}"
+        aria-required="true"
+        {% if form.errors contains 'email' %}
+          aria-invalid="true"
+          aria-describedby="ContactForm-email-error"
+        {% endif %}
+        placeholder="Email"
+      >
+
+      {%- if form.errors contains 'email' -%}
+        <small class="contact__field-error" id="ContactForm-email-error">
+          <span class="visually-hidden">{{ 'accessibility.error' | t }}</span>
+          <span class="form__message">
+            {%- render 'icon-error' -%}
+            {{- form.errors.translated_fields.email | capitalize }}
+            {{ form.errors.messages.email -}}
+          </span>
+        </small>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="--field">
+    <textarea
+      rows="4"
+      id="ContactForm-body"
+      name="contact[{{ 'templates.contact.form.comment' | t }}]"
+      placeholder="How can we help you?"
+    >
+          {{- form.body -}}
+        </textarea>
+  </div>
+  <div class="contact__button">
+    <button type="submit" class="button">Submit</button>
+  </div>
+{%- endform -%}

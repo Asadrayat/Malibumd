@@ -1,0 +1,441 @@
+<style>
+    .section-container--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top | append:'px' }};
+      margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+      padding-top: {{ section.settings.padding_top | append:'px' }};
+      padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+      overflow: hidden;
+      /* background-color: #FAF8F5; */
+    }
+    .section-wrapper--{{ section.id }} {
+      background-image: linear-gradient(to right, #FAF8F5 60%, #B8D6F4 60%);
+      background-size: 100% 70%;
+      background-repeat: no-repeat;
+      padding-top: 50px;
+    }
+
+    .content-wrapper--{{ section.id }}.page-width {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      margin-inline: 0px;
+      min-width: 100%;
+    }
+    .section-container--{{ section.id }}  .left-column{
+
+    }
+
+    .section-container--{{ section.id }} .mid-column  img {
+      /* max-width: 100%;
+      transform: translate(60px,60px) scale(1.5); */
+    }
+    .section-container--{{ section.id }} .right-column {
+      position: relative;
+    }
+    .section-container--{{ section.id }} .text-block {
+       max-width: 600px;
+    }
+
+    .section-container--{{ section.id }} .text-block h2 {
+      font-size: 45px;
+      color: #034872;
+      font-weight: 700;
+      line-height: 1.1em;
+    }
+    .section-container--{{ section.id }} .text-block p {
+      font-size: 14px;
+      font-weight: 600;
+      color: #c2ab80;
+      max-width: 500px;
+      margin-block: 30px;
+    }
+
+    .section-container--{{ section.id }} .button-block {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      margin-block: 50px;
+    }
+    .section-container--{{ section.id }} .icon-block-wrapper {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      padding: 15px 30px;
+      background-color: #ffffff;
+      border-radius: 20px;
+      max-width: 450px;
+      position: relative;
+      z-index: 1;
+    }
+    .section-container--{{ section.id }} .single-icon-block {
+      text-align: center;
+    }
+    .section-container--{{ section.id }} .single-icon-block img {
+      max-width: 45px;
+    }
+    .section-container--{{ section.id }} .single-icon-block p {
+      font-size: 14px;
+      line-height: 1em;
+      color: #c7c7c7;
+      margin-block: 0;
+      max-width: 100px;
+      text-align: center;
+    }
+    a.custom-button.malibu {
+      padding: 8px 30px;
+      font-size: 13px;
+      max-width: max-content;
+    }
+    .section-container--{{ section.id }} .mid-column {
+      line-height: 0;
+      text-align: center;
+      max-width: 600px;
+      margin-top: 20px;
+      margin-right: 150px;
+      /* margin: auto; */
+      float: right;
+    }
+
+    .section-container--{{ section.id }} .right-column img {
+      max-width: 580px;
+    }
+    .mali-caption.caption-1 {
+      right: 0px;
+      top: 50px;
+    }
+    .mali-caption.caption-2 {
+      top: 350px;
+      right: 80px;
+    }
+  @media screen and (max-width: 768px){
+    .section-container--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+      margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+      padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+      padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+    }
+    .section-wrapper--{{ section.id }} {
+      /* background-image: linear-gradient(to bottom, #FAF8F5 55%, #B8D6F4 50%);
+      padding-top: 20px;
+      background-size: 100% 100%; */
+    }
+    .content-wrapper--{{ section.id }}.page-width {
+      grid-template-columns: repeat(2,1fr);
+    }
+    .section-container--{{ section.id }} .left-column {
+      grid-column: 1/-1;
+    }
+
+
+    .section-container--{{ section.id }} .text-block h2 {
+      font-size: 38px;
+    }
+    .section-container--{{ section.id }} .text-block p {
+      font-size: 13px;
+      margin-block: 10px;
+    }
+    .section-container--{{ section.id }} .mid-column {
+      /* grid-column: 2/-1; */
+    }
+    .section-container--{{ section.id }} .right-column {
+      grid-column: 1/2;
+      grid-row: 2/3;
+    }
+    .section-container--{{ section.id }} .mid-column  img {
+      /* max-width: 100%;
+      transform: scale(2) translate(30px, -30px); */
+    }
+    .mali-caption.caption-1 {
+      right: unset;
+      top: unset;
+    }
+    .mali-caption.caption-2 {
+      display : none;
+    }
+
+  }
+</style>
+
+<!-- Desktop Markup Start -->
+
+<section class="section-container--{{ section.id }} desktop-only">
+  <div class="section-wrapper--{{ section.id }}">
+    <div class="content-wrapper--{{ section.id }} page-width">
+      <div class="left-column">
+        <div class="text-block">
+          <h2>{{ section.settings.title }}</h2>
+          <p>{{ section.settings.content }}</p>
+          <a class="custom-button malibu mobile-only" href="{{ section.settings.shop_url }}"> Shop Now </a>
+        </div>
+        <div class="button-block">
+          <a class="custom-button malibu desktop-only" href="{{ section.settings.shop_url }}"> Shop Now </a>
+          {% render 'mali-all-icons', name: 'play-button' %}
+          <a class="unstyled--link" href="{{ section.settings.result_url }}"> Our Results </a>
+        </div>
+        <div class="icon-block-wrapper desktop-only">
+          <div class="single-icon-block">
+            <img src="{{ 'doctor.png' | asset_url }}">
+            <p>Doctor Formulated</p>
+          </div>
+          <div class="single-icon-block">
+            <img src="{{ 'optimized.png' | asset_url }}">
+            <p>Optimized Ingredients</p>
+          </div>
+          <div class="single-icon-block">
+            <img src="{{ 'responsible.png' | asset_url }}">
+            <p>Responsible Process</p>
+          </div>
+        </div>
+      </div>
+      <div class="mid-column mobile-only">
+        {{ section.settings.image | img_url: 'master' | img_tag }}
+      </div>
+      <div class="right-column">
+        <div class="mid-column desktop-only">
+          {{ section.settings.image | img_url: 'master' | img_tag }}
+        </div>
+        <div class="mali-caption caption-1" data-aos="fade-left">
+          {% render 'mali-all-icons', name: 'quote' %}
+          <p>
+            Terrific. Wish I could attach a picture here. I can't wait for the eye serum! I do battle dark circles
+            around my eyes. Love MalibuMD.
+          </p>
+          <h6>Joyce Meyer</h6>
+        </div>
+        <div class="mali-caption caption-2" data-aos="fade-left">
+          {% render 'mali-all-icons', name: 'quote' %}
+          <p>
+            Best eye repair, see less bags under my eyes. Dark spot easer is amazing as well. I’m in my 6th week and my
+            skin tone looks clearer and even. My dark spots are fading!
+          </p>
+          <h6>Sophia Princeton</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Desktop Markup End -->
+<!-- Mobile Markup Start -->
+<style>
+@media screen and (max-width: 768px){
+.section-container--{{ section.id }}{
+    overflow: hidden;
+    background-color: #B8D6F4;
+}
+.section-wrapper--{{ section.id }} {
+      background-image: linear-gradient(to bottom, #FAF8F5 50%, #B8D6F4 50%);
+      padding-top: 20px;
+      background-size: 100% 100%;
+}  
+.section-container--{{ section.id }} .text-block{
+  grid-column: 1/-1;
+  grid-row: 1/2;
+}
+.section-container--{{ section.id }} .mali-caption.caption-2 {
+    /* position: unset;
+    display: block;
+    grid-column: 1/2;
+    grid-row: 2/3; */
+    top: 450px;
+    left: 10px;
+    display: grid;
+}  
+.section-container--{{ section.id }} .mali-caption.caption-2 p {
+    font-size: 11px;
+    max-width: 170px;
+}  
+.section-container--{{ section.id }}  .button-block {
+    margin-block: 10px;
+    margin-top: 60px;
+    grid-column: 1/2;
+    grid-row: 3/4;
+}
+.section-container--{{ section.id }} .mid-column {
+      max-width: 600px;
+      margin-top: unset;
+      margin-right: unset;
+      float: right;
+      grid-column: 2/-1;
+    }
+.section-container--{{ section.id }} .mid-column img {
+      transform: scale(2) translate(35px, 35px);
+    }
+.section-container--{{ section.id }} .md-promise {
+      grid-column: 1/-1;
+    grid-row: 4/5;
+    margin-block: 20px;
+    color: #ffffff;
+    text-align: center;
+    z-index: 1;
+    letter-spacing: 5px;
+}
+
+  
+/* .section-container--{{ section.id }}
+.section-container--{{ section.id }}
+.section-container--{{ section.id }}
+.section-container--{{ section.id }} */
+
+  
+}
+  
+</style>
+
+
+
+<section class="section-container--{{ section.id }} mobile-only">
+  <div class="section-wrapper--{{ section.id }}">
+    <div class="content-wrapper--{{ section.id }} page-width">
+      <div class="text-block">
+        <h2>{{ section.settings.title }}</h2>
+        <p>{{ section.settings.content }}</p>
+        <a class="custom-button malibu mobile-only" href="{{ section.settings.shop_url }}"> Shop Now </a>
+      </div>
+      <div class="mali-caption caption-2" data-aos="fade-left">
+        {% render 'mali-all-icons', name: 'quote' %}
+        <p>
+          Best eye repair, see less bags under my eyes. Dark spot easer is amazing as well. I’m in my 6th week and my
+          skin tone looks clearer and even. My dark spots are fading!
+        </p>
+        <h6>Sophia Princeton</h6>
+      </div>
+      <div class="button-block">
+        {% render 'mali-all-icons', name: 'play-button' %}
+        <a class="unstyled--link" href="{{ section.settings.result_url }}"> Our Results </a>
+      </div>
+
+      <div class="mid-column ">
+        {{ section.settings.image | img_url: 'master' | img_tag }}
+      </div>
+      <h4 class="md-promise">THE MALIBU MD PROMISE</h4>
+    </div>
+  </div>
+</section>
+<!-- Mobile Markup END -->
+
+{% schema %}
+{
+  "name": "Mali Banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "url",
+      "id": "shop_url",
+      "label": "Shop Now Url"
+    },
+    {
+      "type": "url",
+      "id": "result_url",
+      "label": "Result Url"
+    },
+    {
+      "type": "text",
+      "id": "content",
+      "label": "Content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "Mali Banner"
+    }
+  ]
+}
+{% endschema %}

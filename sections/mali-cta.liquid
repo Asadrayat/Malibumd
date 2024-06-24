@@ -1,0 +1,241 @@
+<style>
+  .section-container--{{ section.id }}{
+    margin-top: {{ section.settings.margin_top | append:'px' }};
+    margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+    padding-top: {{ section.settings.padding_top | append:'px' }};
+    padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+    overflow: hidden;
+    background: {{ section.settings.bg-color}};
+    text-align: center;
+    position: relative;
+    opacity: 0;
+    transition: 1s;
+  }
+  .show-section{
+    opacity: 1;
+  }
+ .section-container--{{ section.id }} h1 {
+    font-size: 45px;
+    font-family: playfair display,serif;
+    color: #ffffff;
+    margin-block: 0;
+    font-weight: 500;
+}
+ .section-container--{{ section.id }} h5 {
+    font-size: 13px;
+    color: #034872;
+    margin-block: 0;
+    margin-bottom: 50px;
+}
+.left-wave {
+  position: absolute;
+  top: 0;
+  left: 0px;
+  transition: 1s ease;
+} 
+.right-wave {
+  position: absolute;
+  top: 0;
+  right: 0px;
+  transition: 1s ease;
+} 
+
+.hide-left-box {
+  left: -200px;
+}
+.hide-right-box {
+  right: -200px;
+}
+
+  @media screen and (max-width: 768px){
+    .section-container--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+      margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+      padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+      padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+    }
+.section-container--{{ section.id }} h1 {
+    font-size: 22px;
+}
+.section-container--{{ section.id }} h5 {
+    max-width: 250px;
+    margin: 20px auto;
+    font-weight: 500;
+}
+  }
+</style>
+<section class="section-container--{{ section.id }}">
+  <div class="left-wave">{{ section.settings.left_image | img_url: 'master' | img_tag }}</div>
+  <div class="right-wave">{{ section.settings.right_image | img_url: 'master' | img_tag }}</div>
+  <div class="section-wrapper--{{ section.id }} page-width">
+      <h1>{{ section.settings.title }}</h1>
+      <h5>{{ section.settings.subtitle }}</h5>
+      <a class="custom-button" href="{{ section.settings.url }}"> {{ section.settings.button-text }} </a>
+    </div>
+</section>
+
+<script>
+ let options = {
+   threshold : .5
+ }
+  const wave_observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      let x = entry.target.querySelector('.left-wave')
+      let y = entry.target.querySelector('.right-wave')
+      let z = entry.target
+      console.log(z)
+      if(entry.isIntersecting) {
+        x.classList.add('hide-left-box');
+        y.classList.add('hide-right-box');
+        z.classList.add('show-section');
+      } else {
+        x.classList.remove('hide-left-box');
+        y.classList.remove('hide-right-box');
+        z.classList.remove('show-section');
+      }
+        
+    });
+  },options);
+ 
+
+  const wave = document.querySelector('.section-container--{{ section.id }}');
+ 
+  wave_observer.observe(wave);
+</script>
+
+{% schema %}
+{
+  "name": "Mali CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button-text",
+      "label": "Button Text"
+    },
+    {
+      "type": "url",
+      "id": "url",
+      "label": "Url"
+    },
+    {
+      "type": "image_picker",
+      "id": "left_image",
+      "label": "Left Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "right_image",
+      "label": "Right Image"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Mali CTA"
+    }
+  ]
+}
+{% endschema %}

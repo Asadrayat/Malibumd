@@ -1,0 +1,627 @@
+{% assign id = section.id %}
+<style>
+    .custom__faq--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top }}px;
+      margin-bottom: {{ section.settings.margin_bottom }}px;
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+      overflow: hidden;
+      background: {{ section.settings.bg_color }};
+    }
+    .icons-{{ id }}{
+      display: flex;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+    .icons-{{ id }} img{
+      width: 20px;
+      height: 20px;
+      filter: brightness(0.5);
+    }
+    .heading__faq{
+      display: flex;
+      flex-direction: column;
+      max-width: 90%;
+      margin: auto;
+    }
+    .heading__faq h2{
+      color: #000000;
+      font-size: 27px;
+      line-height: 30px;
+      text-align: center;
+    }
+    .heading__faq p{
+      color: rgb(255, 196, 130);
+      font-size: 14px;
+      line-height: 18px;
+      font-weight: 700;
+    }
+
+    .custom__faq-wrapper{{section.id}}{
+      max-width: 90%;
+      margin: auto;
+    }
+
+    .accordion__intro {
+      position: relative;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 5px 0;
+      box-sizing: border-box;
+    }
+    .custom__faq--{{ section.id }} .accordion__intro h1{
+      color: #000000;
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 30px;
+      padding: 0  36px;
+      height: 105px;
+      margin: 0;
+      display: flex;
+      /* background: #F7FCFC; */
+      background-color: #3a8dde0d !important;
+      width: 100%;
+      align-items: center;
+    }
+    .accordion__intro .number-{{ id }} {
+      /* background: #E8F6F7; */
+      background-color: #3a8dde1a !important;
+      font-size: 30px;
+      font-weight: 600;
+      color: #000;
+      margin: 0;
+      text-align: center;
+      /* padding: 15px 55px; */
+      height: 105px;
+      width: 150px;
+      /* text-align: center; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: .4s ease-in-out;
+    }
+
+    .accordion__intro .number-{{ id }}:hover {
+      background: #01A6A5;
+    }
+
+    .accordion__content {
+      color: #000;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+      letter-spacing: 0;
+      max-height: 0;
+      overflow: hidden;
+      /* will-change: max-height; */
+      transition: all 0.25s ease-out;
+      opacity: 0;
+      width: 80%;
+      margin: 10px auto;
+  }
+    .accordion__content ul{
+      color: #fff;
+    }
+    .accordion__content p{
+      color: #000;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: justify;
+    }
+    .accordion__icons{
+      font-size: 0;
+      line-height: 0;
+      position: relative;
+    }
+
+    .custom__faq-inner-wrapper .accordion__faq{
+      border-top: none;
+      border-color: #CCB2E5;
+    }
+    .custom__faq-inner-wrapper .accordion__faq {
+      margin: 0;
+    }
+    .accordion__intro-text{
+      color: #000;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+      letter-spacing: 1.6px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .accordion__active-faq .accordion__content {
+      opacity: 1;
+      boz-sizing: border-box;
+      padding-block: 30px;
+    }
+    .accordion__active-faq .accordion__content a {
+      color: #00AEBF;
+      text-decoration: none;
+    }
+    .accordion__active-faq .accordion__content strong {
+      color: #034872;
+    }
+
+    .custom-faq-nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+      justify-content: start;
+    }
+    .custom-faq-nav.desktop-only {
+      display: flex;
+    }
+    .custom-faq-nav.mobile-only {
+      display: none;
+    }
+    .custom__faq--{{ section.id }} .custom-faq-nav li{
+      color: #000;
+      cursor: pointer;
+      font-size: 15px;
+    }
+    .custom__faq--{{ section.id }} .custom-faq-nav li.active{
+      color: #3a8dde !important;
+      font-weight: 600;
+    }
+
+
+
+    @media screen and (min-width: 768px){
+      .custom__faq-wrapper{{section.id}}.page-width{
+        padding: 0;
+      }
+    }
+    @media screen and (max-width: 768px){
+      .custom__faq--{{ section.id }}{
+        margin-top: {{ section.settings.margin_top-m }}px;
+        margin-bottom: {{ section.settings.margin_bottom-m }}px;
+        padding-top: {{ section.settings.padding_top-m }}px;
+        padding-bottom: {{ section.settings.padding_bottom-m }}px;
+      }
+        .icons-{{ id }}{
+          display: flex;
+          gap: 20px;
+          padding: 20px 40px;
+          justify-content: flex-start;
+        }
+      .accordion__intro {
+        flex-direction: column;
+      }
+      .accordion__intro h1{
+        font-size: 16px;
+      }
+    .accordion__intro .number-{{ id }} {
+      padding: 14px 30px;
+      justify-content: start;
+    }
+      .accordion__intro .number-{{ id }} {
+        width: 100%;
+      }
+      .custom__faq-wrapper{{section.id}} {
+        max-width: 100%;
+      }
+      .accordion__intro{
+        padding: 12px 0;
+      }
+      .accordion__intro h4{
+        font-size: 14px;
+        line-height: 14px;
+      }
+      .accordion__content p{
+        font-size: 14px;
+        line-height: 14px; /* 150% */
+      }
+      .nav_color {
+        color: #000;
+      }
+
+    .custom-faq-nav.desktop-only {
+      display: none;
+    }
+    .custom-faq-nav.mobile-only {
+      display: block!important;
+      width: 100%;
+      padding: 10px;
+      min-height: 30px;
+    }
+    .nav-mobile__wrapper h4{
+      font-size: 18px;
+      line-height: normal;
+      font-weight: 600;
+      margin: 3px 0;
+      font-family: sans-serif;
+    }
+    }
+</style>
+
+{% liquid
+  assign general = section.blocks | where: 'type', 'general'
+  assign ingredient-formulation = section.blocks | where: 'type', 'ingredient-formulation'
+  assign account-profile = section.blocks | where: 'type', 'account-profile'
+  assign product-usage = section.blocks | where: 'type', 'product-usage'
+  assign ordering-shipping = section.blocks | where: 'type', 'ordering-shipping'
+%}
+
+<section class="custom__faq--{{ section.id }}">
+  <div class="container-{{ id }} page-width">
+    <div class="heading__faq">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.label }}</p>
+    </div>
+    <div class="custom__faq-wrapper{{section.id}}">
+      <div class="custom__faq-container">
+        <ul class="custom-faq-nav desktop-only">
+          <li class="active" data-type="general">General</li>
+          <li data-type="ingredient-formulation">Ingredients and Formulation</li>
+          <li data-type="account-profile">Account and Profile</li>
+          <li data-type="product-usage">Product and Usage Application</li>
+          <li data-type="ordering-shipping">Ordering and Shipping</li>
+        </ul>
+        <div class="mobile-only nav-mobile__wrapper">
+          <h4>Choose a category</h4>
+          <select class="custom-faq-nav custom-faq-nav-mobile mobile-only">
+            <option class="active" data-type="general">General</option>
+            <option data-type="ingredient-formulation">Ingredients and Formulation</option>
+            <option data-type="account-profile">Account and Profile</option>
+            <option data-type="product-usage">Product and Usage Application</option>
+            <option data-type="ordering-shipping">Ordering and Shipping</option>
+          </select>
+        </div>
+        <div class="custom__faq-inner-wrapper">
+          {% for block in general %}
+            {% render 'malibu-faq-snippet',
+              section: section,
+              block: block,
+              id: id,
+              index: forloop.index,
+              type: 'general'
+            %}
+          {% endfor %}
+          {% for block in ingredient-formulation %}
+            {% render 'malibu-faq-snippet',
+              section: section,
+              block: block,
+              id: id,
+              index: forloop.index,
+              type: 'ingredient-formulation'
+            %}
+          {% endfor %}
+          {% for block in account-profile %}
+            {% render 'malibu-faq-snippet',
+              section: section,
+              block: block,
+              id: id,
+              index: forloop.index,
+              type: 'account-profile'
+            %}
+          {% endfor %}
+          {% for block in product-usage %}
+            {% render 'malibu-faq-snippet',
+              section: section,
+              block: block,
+              id: id,
+              index: forloop.index,
+              type: 'product-usage'
+            %}
+          {% endfor %}
+          {% for block in ordering-shipping %}
+            {% render 'malibu-faq-snippet',
+              section: section,
+              block: block,
+              id: id,
+              index: forloop.index,
+              type: 'ordering-shipping'
+            %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+    var accordionsFaq = document.querySelectorAll(".accordion__faq");
+    accordionsFaq.forEach(ac => console.log("height: ", ac.clientHeight))
+
+    var openAccordionFaq = (accordion) => {
+    	var content = accordion.querySelector(".accordion__content");
+    	accordion.classList.add("accordion__active-faq");
+    	content.style.maxHeight = content.scrollHeight + 100 + "px";
+    };
+
+    var closeAccordionFaq = (accordion) => {
+    	var content = accordion.querySelector(".accordion__content");
+    	accordion.classList.remove("accordion__active-faq");
+    	content.style.maxHeight = null;
+    };
+
+    accordionsFaq.forEach((accordion) => {
+    	var intro = accordion.querySelector(".accordion__intro");
+    	var content = accordion.querySelector(".accordion__content");
+
+    	intro.onclick = () => {
+    		if (content.style.maxHeight) {
+    			closeAccordionFaq(accordion);
+    		} else {
+    			accordionsFaq.forEach((accordion) => closeAccordionFaq(accordion));
+    			openAccordionFaq(accordion);
+    		}
+    	};
+    });
+    const handleHiddenClass = (list) =>{
+      accordionsFaq.forEach(faq => {
+        if(faq.dataset.type === list.dataset.type) {
+          faq.classList.remove("hidden")
+        } else {
+          faq.classList.add("hidden")
+        }
+      })
+    }
+    let navLists = document.querySelectorAll(".custom-faq-nav li")
+    navLists.forEach(list => list.addEventListener("click", e => {
+      navLists.forEach(l => {
+        if(l.dataset.type === list.dataset.type) l.classList.add("active")
+        else l.classList.remove("active")
+      })
+      handleHiddenClass(list)
+    }))
+  let mobile_nav = document.querySelector(".custom-faq-nav-mobile");
+
+  mobile_nav.addEventListener('change', function() {
+      let selectedOption = this.options[this.selectedIndex];
+      let dataType = selectedOption.dataset.type;
+
+      // Remove 'active' class from all options
+      this.querySelectorAll('option').forEach(opt => {
+          opt.classList.remove('active');
+      });
+
+      // Add 'active' class to the selected option
+      selectedOption.classList.add('active');
+      accordionsFaq.forEach(faq => {
+        if(faq.dataset.type === dataType) {
+          faq.classList.remove("hidden")
+        } else {
+          faq.classList.add("hidden")
+        }
+      })
+  });
+</script>
+{% schema %}
+{
+  "name": "Malibu Faq",
+  "settings": [
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background",
+      "default": "#fff"
+    },
+    {
+      "type": "select",
+      "id": "faq_type",
+      "label": "FAQ Type",
+      "options": [
+        {
+          "value": "general",
+          "label": "General FAQ"
+        },
+        {
+          "value": "ingredient-formulation",
+          "label": "Ingredients and Formulation"
+        },
+        {
+          "value": "account-profile",
+          "label": "Account and Profile"
+        },
+        {
+          "value": "product-usage",
+          "label": "Product and Usage and Application FAQ"
+        },
+        {
+          "value": "ordering-shipping",
+          "label": "Ordering and Shipping FAQ"
+        }
+      ],
+      "default": "general"
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Add Label"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 0
+    }
+  ],
+  "blocks": [
+     {
+       "name": "General FAQ",
+       "type": "general",
+       "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+       ]
+     },
+     {
+       "name": "Ingredients FAQ",
+       "type": "ingredient-formulation",
+       "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+       ]
+     },
+     {
+       "name": "Account and Profile",
+       "type": "account-profile",
+       "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+       ]
+     }
+     ,
+     {
+       "name": "Product Usage Application",
+       "type": "product-usage",
+       "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+       ]
+     }
+     ,
+     {
+       "name": "Ordering and Shipping",
+       "type": "ordering-shipping",
+       "settings": [
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text"
+          }
+       ]
+     }
+   ],
+  "presets": [
+    {
+      "name": "Malibu Faq"
+    }
+  ]
+}
+{% endschema %}

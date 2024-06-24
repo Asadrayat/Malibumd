@@ -1,0 +1,293 @@
+<style>
+.section-container--{{ section.id }}{
+  margin-top: {{ section.settings.margin_top | append:'px' }};
+  margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+  padding-top: {{ section.settings.padding_top | append:'px' }};
+  padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+  overflow: hidden;
+  background-color: #f5f1ea;
+  /* background-image: url("{{ 'top-wave.jpg' | asset_url }}");
+  background-repeat: no-repeat;
+  background-attachment: fixed; 
+  background-size: 100% 50px;
+  background-position: top center; */
+}
+
+.title-block--{{ section.id }} {
+  text-align : center;
+}
+.title-block--{{ section.id }} h6 {
+  font-size: 29px;
+  color: #034872;
+  font-weight: 400;
+  margin-block: 0;
+}
+.title-block--{{ section.id }} h4 {
+  color: #00adbd;
+  font-weight: 500;
+  font-size: 32px;
+  margin-block: 0;
+}
+.section-container--{{ section.id }} .icon-block-wrapper {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  padding: 15px 30px;
+  border-radius: 20px;
+  max-width: 650px;
+  position: relative;
+  z-index: 1;
+  margin: 30px auto;
+}
+.section-container--{{ section.id }} .icon-block-wrapper .single-icon-block {
+  text-align: center;
+}
+.section-container--{{ section.id }} .icon-block-wrapper .single-icon-block p {
+  /* color: #033859; */
+  color: #033859;
+  font-size: 13px;
+  margin-block: 0;
+}
+.image-block-{{ section.id }} {
+  position :relative;
+  min-height: 220px;
+  margin-block: 20px;
+}
+.image-block-{{ section.id }}  .image-slider-wrapper {
+  display: -webkit-inline-box;
+  align-items: center;
+  /* gap: 30px; */
+  position: absolute;
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
+  /* overflow: hidden; */
+  animation: marquee 40s linear infinite;
+}
+.image-block-{{ section.id }}  .image-slider-wrapper:hover {
+  animation-play-state: paused;
+}
+.image-block-{{ section.id }}  .slider-image {
+  border-radius: 20px;
+  overflow: hidden;
+  line-height: 0;
+  margin-right: 30px;
+}
+.image-block-{{ section.id }}  .slider-image img {
+  transition : 0.5s ease;
+}
+.image-block-{{ section.id }}  .slider-image:hover img {
+  transform : scale(1.1);
+}
+.section-container--{{ section.id }}  .button-wrapper {
+  margin: auto;
+  text-align: center;
+}
+@media screen and (max-width: 768px){
+  .section-container--{{ section.id }}{
+    margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+    margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+    padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+    padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+    /* background-image: url("{{ 'top-s.png' | asset_url }}");
+    background-size: 100%; */
+  }
+.image-block-{{ section.id }}  .image-slider-wrapper {
+  animation: marquee 20s linear infinite;
+}
+.title-block--{{ section.id }} h6 {
+  font-size: 32px;
+  line-height: 1.1em;
+}
+.title-block--{{ section.id }} h4 {
+  font-size: 26px;
+  line-height: 1.1em;
+  margin-block: 20px;
+}
+.section-container--{{ section.id }} .icon-block-wrapper {
+  padding: 15px 0px;
+}
+.section-container--{{ section.id }} .icon-block-wrapper .single-icon-block img {
+  max-width: 50px;
+}
+.section-container--{{ section.id }} .icon-block-wrapper .single-icon-block p {
+  font-size: 13px;
+  line-height: 1.3em;
+
+}
+.image-block-{{ section.id }} {
+  min-height: 120px;
+}
+.image-block-{{ section.id }}  .slider-image {
+  max-width: 250px;
+  max-height: 250px;
+}
+
+}
+</style>
+<section class="section-container--{{ section.id }}">
+  <div class="section-wrapper--{{ section.id }} page-width">
+    <div class="title-block--{{ section.id }}">
+      {% render 'mali-all-icons', name: 'dual-wave' %}
+
+      {% if section.settings.title != blank %}
+        <h6 class="">{{ section.settings.title }}</h6>
+      {% endif %}
+      {% if section.settings.subtitle != blank %}
+        <h4 class="">{{ section.settings.subtitle }}</h4>
+      {% endif %}
+    </div>
+    <div class="icon-block-wrapper ">
+      <div class="single-icon-block">
+        <img src="{{ 'doctor-blue.svg' | asset_url }}">
+        <p>Formulated by doctors</p>
+      </div>
+      <div class="single-icon-block">
+        <img src="{{ 'optimized-blue.svg' | asset_url }}">
+        <p>Optimized Ingredients</p>
+      </div>
+      <div class="single-icon-block">
+        <img src="{{ 'process-blue.svg' | asset_url }}">
+        <p>Responsible Process</p>
+      </div>
+    </div>
+    <div class="image-block-{{ section.id }}">
+      <div class="image-slider-wrapper">
+        {% for block in section.blocks %}
+          <div class="slider-image">
+            {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="button-wrapper desktop-only">
+      <a class="custom-button" href="">Shop All > </a>
+      <a class="custom-button" href="">Real Results > </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mali Wrinkles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Image",
+      "type": "Image",
+      "limit": 11,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mali Wrinkles"
+    }
+  ]
+}
+{% endschema %}

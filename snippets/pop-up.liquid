@@ -1,0 +1,350 @@
+{% assign product = all_products['miracle-life-face-cream'] %}
+
+<style>
+    .malibumd-popup-container {
+      width : 100vw;
+      height : 100vh;
+      background : #1b017712;
+      position : fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background: rgba(0, 0, 0, 50%);
+      visibility: hidden;
+    }
+    .malibumd-popup-container.active {
+      visibility: visible;
+      z-index: 99;
+      transition: .4s;
+    }
+    .organna-popup-wrapper {
+        background: #FFF8EB;
+        text-align: center;
+        width: 80%;
+        /* margin: 50px auto; */
+        border-radius: 20px;
+        padding: 15px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 630px;
+        height: auto;
+    }
+    .pop-first {
+      position: relative;
+    }
+    .pf_title h3{
+      font-size: 22px;
+      line-height: 26px;
+      color: rgb(0, 174, 191);
+      font-weight: 700;
+      text-align: start;
+      margin: 0 15px;
+      width: max-content;
+      position: relative;
+    }
+    .pf_title h3::after{
+      content: " ";
+      position: absolute;
+      top: 50%;
+      right: -13px;
+      width: 120%;
+      z-index: -1;
+      height: 5px;
+      background: #FABF52;
+    }
+    .pop-first h1 {
+        font-size: 36px;
+        line-height: 40px;
+        color: rgb(3, 72, 114);
+        font-weight: 600;
+        text-align: start;
+        margin: 30px 15px 0 15px;
+    }
+    .pop-first p{
+      font-size: 14px;
+      line-height: 14px;
+      color: rgb(0, 116, 127);
+      text-align: justify;
+      margin: 15px 15px;
+    }
+    .popup_product {
+        background: url("https://cdn.shopify.com/s/files/1/0627/6585/8972/files/Cream8-min.webp?v=1710825900");
+        width: 295px;
+        height: 350px;
+        box-sizing: border-box;
+        box-shadow: 0px 0px 0px 4px #fff;
+        border-radius: 15px;
+        background-size: cover;
+        background-position: center;
+        padding: 15px 10px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transform: translate(50px, 100px);
+    }
+    .pp__wrapper h5{
+        margin: 0;
+        font-size: 12px;
+        line-height: 12px;
+        color: rgb(0, 116, 127);
+        text-align: right;
+    }
+    .pp__wrapper h3{
+        font-size: 17px;
+        line-height: 17px;
+        color: rgb(3, 72, 114);
+        text-align: right;
+        margin: 0;
+    }
+    .pp__wrapper img{
+        max-width: 70px;
+        height: 14px;
+        filter: brightness(0.5);
+    }
+    .pp__wrapper p{
+        font-size: 9px;
+        line-height: 9px;
+        color: rgb(117, 117, 117);
+        font-weight: 600;
+        text-align: right;
+        margin: 5px 0;
+    }
+    .pp__wrapper p{
+        font-size: 9px;
+        line-height: 9px;
+        color: rgb(117, 117, 117);
+        font-weight: 600;
+        text-align: right;
+    }
+    .popup_rating{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    .popup_product a {
+        text-decoration: none;
+        background: #000;
+        color: rgb(232, 230, 230);
+        font-size: 10px;
+        line-height: 14px;
+        font-weight: 600;
+        padding: 0px 7px;
+        border-radius: 44px;
+        transition: all 0.3s ease-in-out;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        transform: translate(-10px, -10px);
+    }
+    .popup_product a:hover{
+        background: rgb(3,131,144);
+    }
+    .pp_form {
+      max-width: 320px;
+    }
+    .pp_form-button button {
+        padding: 4px 20px !important;
+        background: rgb(3,131,144) !important;
+        color: #fff !important;
+    }
+    .pp__form input {
+        border: 2px solid rgb(0, 174, 191) !important;
+    }
+    .quote_popup{
+      margin: 15px 0 0 -15px;
+      font-size: 12px;
+      color: rgb(255, 255, 255);
+      line-height: 17px;
+      background: rgb(194 171 127);
+      width: max-content;
+      padding: 5px 20px;
+      cursor: pointer;
+    }
+    .quote_popup:hover{
+      background: rgb(254,96,96);
+    }
+    .pp-close_btn svg {
+      width: 35px;
+      height: 35px;
+      fill: rgb(106, 203, 212);
+      filter: contrast(0.5);
+      position: absolute;
+      top: 0;
+      right: 0;
+      cursor: pointer;
+    }
+  .pp_leaf-svg svg {
+      width: 100px;
+      height: 105px;
+      position: absolute;
+      top: 0;
+      right: 80%;
+      transform: translate(0, -35px);
+  }
+  @media screen and (max-width: 768px) {
+    .organna-popup-wrapper {
+        width: 80%;
+        padding: 20px;
+    }
+    .pop-first h3 {
+        margin: 0;
+    }
+    .pop-first h1 {
+        font-size: 17px;
+        line-height: 19px;
+        margin: 10px 0;
+    }
+    .quote_popup {
+      max-width: 100%;
+      margin: 18px 0 100px 0;
+    }
+    .popup_product {
+        width: 90%;
+        height: 240px;
+        transform: translate(-15px, 270px);
+    }
+    .pp_leaf-svg svg {
+      transform: translate(15px, -25px);
+    }
+    .pp__wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 5px;
+    }
+    .pp__wrapper p {
+        margin: 5px 0;
+    }
+    .pp__wrapper h3 {
+      text-align: -webkit-right;
+      max-width: 160px;
+      margin: 0;
+    }
+    .pop-first p {
+      margin: 15px 0;
+    }
+    .popup_product a {
+      transform: translate(-95px, -20px);
+    }
+  }
+</style>
+
+<div class="malibumd-popup-container" id="malibumd-popup-container">
+  <div class="organna-popup-wrapper">
+    <div class="pop-first">
+      <div class="pf_title"><h3>a gift for you!</h3></div>
+      <h1>
+        Great news!<br>
+        Here's 20% off our<br>
+        entire store.
+      </h1>
+      <p>No Spam. Ever. Because that sucks.</p>
+      <div class="popup_newsletter">
+        <div class="form__wrapper pp_form">
+          {% form 'customer', class: 'newsletter-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <div
+              class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              {% if settings.animations_reveal_on_scroll %}
+                data-cascade
+                style="--animation-order: {{ forloop.index }};"
+              {% endif %}
+            >
+              {%- if form.errors -%}
+                <small
+                  class="newsletter-form__message form__message invalid__nl cf-errror_msg"
+                  id="Newsletter-error--{{ section.id }}"
+                >
+                  <div class="svg__wrapper-error">{%- render 'icon-error' -%}</div>
+                  {{- form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email -}}
+                </small>
+              {%- endif -%}
+              <div class="cf__form-wrapper pp__form">
+                <input
+                  id="NewsletterForm--{{ section.id }}"
+                  type="email"
+                  name="contact[email]"
+                  class="email_inp"
+                  value="{{ form.email }}"
+                  aria-required="true"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  autocomplete="email"
+                  {% if form.errors %}
+                    autofocus
+                    aria-invalid="true"
+                    aria-describedby="Newsletter-error--{{ section.id }}"
+                  {% elsif form.posted_successfully? %}
+                    aria-describedby="Newsletter-success--{{ section.id }}"
+                  {% endif %}
+                  placeholder="Email Address"
+                  required
+                >
+                <div class="cf__formbtn-wrapper pp_form-button">
+                  <button
+                    type="submit"
+                    class="btn_submit button-font"
+                    name="commit"
+                    id="Subscribe"
+                    aria-label="Sign Up"
+                  >
+                    Sign Up
+                  </button>
+                </div>
+              </div>
+            </div>
+            {%- if form.posted_successfully? -%}
+              <h3
+                class="newsletter-form__message newsletter-form__message--success form__message"
+                id="Newsletter-success--{{ section.id }}"
+                tabindex="-1"
+                autofocus
+              >
+                {% render 'icon-success' -%}
+                {{- 'newsletter.success' | t }}
+              </h3>
+            {%- endif -%}
+          {% endform %}
+        </div>
+      </div>
+      <div class="quote_popup">Not Interested, I like wasting money 👍</div>
+      <div class="popup_product">
+        <div class="pp__wrapper">
+          <h5>⭐Featured Product</h5>
+          <h3>{{ product.title }}</h3>
+          <div class="popup_rating">
+            <img src="https://cdn.shopify.com/s/files/1/0627/6585/8972/files/Asset_31.png?v=1710825611">
+            <p>
+              4.92/5.00<br>
+              5000+ Reviews
+            </p>
+          </div>
+        </div>
+        <a href="{{ product.url }}">read more></a>
+        <div class="pp_leaf-svg">{% render 'all-icons', name: 'leaf' %}</div>
+      </div>
+      <div class="pp-close_btn" id="pp-close_btn">{% render 'all-icons', name: 'cross' %}</div>
+    </div>
+  </div>
+</div>
+<script>
+  let popup_open = document.getElementById('malibumd-popup-container')
+  let popup_close = document.getElementById('pp-close_btn')
+
+  if(!localStorage.getItem("popup")) {
+    localStorage.setItem("popup", "open")
+  }
+
+  if(localStorage.getItem("popup") === "open") {
+    popup_open.classList.add("active")
+  }
+
+  popup_close.addEventListener("click", e => {
+    e.preventDefault()
+    popup_open.classList.remove('active')
+    localStorage.setItem("popup", "close")
+  })
+</script>

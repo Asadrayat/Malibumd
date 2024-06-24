@@ -1,0 +1,419 @@
+<style>
+  .image__compare--{{ section.id }}{
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    overflow: hidden;
+  }
+  .image__compare--{{ section.id }} .image__compare-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: {% if section.settings.alignment == "text" %} row {% elsif section.settings.alignment == "image" %} row-reverse {% endif %};
+    align-items: center;
+  }
+  .image__compare-wrapper > div{
+    flex: 0 0 50%;
+  }
+  .icmp__text{
+    {% if section.settings.alignment == "text" %} padding-right: 210px; {% elsif section.settings.alignment == "image" %} padding-left: 90px; {% endif %}
+  }
+  .icmp__text h2{
+    color: var(--Black, #0B0F0E);
+    font-size: 40px;
+    line-height: 55px; /* 137.5% */
+    text-transform: uppercase;
+    margin: 0 0 24px;
+  }
+  .icmp__before-text{
+    margin: 0 0 32px;
+  }
+  .icmp__before-text h4, .icmp__after-text h4{
+    color: var(--color1, #5B2790);
+    font-size: 25.526px;
+    line-height: 31.417px; /* 123.077% */
+    text-transform: uppercase;
+    margin: 0 0 12px;
+  }
+  .icmp__before-text p, .icmp__after-text p{
+    color: var(--Black, #0B0F0E);
+    font-size: 16px;
+    line-height: 24px; /* 150% */
+    margin: 0;
+  }
+  /* Before after slider style */
+    .container {
+      display: grid;
+      place-content: center;
+      position: relative;
+      overflow: hidden;
+      --position: 50%;
+    }
+
+    .image-container {
+      max-width: 100%;
+      height: 100%;
+      /* aspect-ratio: 1/1; */
+      position: relative;
+      border: 0.447px solid var(--color1, #5B2790);
+    }
+    .image-container img {
+      display: block;
+      max-width: 100%;
+    }
+    .slider-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left;
+    }
+
+    .image-before {
+      position: absolute;
+      inset: 0;
+      width: var(--position);
+    }
+    .image-container::before{
+      content: "Before";
+      position: absolute;
+      /* top: 90%; */
+      /* left: 10%; */
+      bottom: 18px;
+      left: 18px;
+      color: var(--Black, #0B0F0E);
+      font-size: 16px;
+      line-height: 17.87px; /* 111.686% */
+      z-index: 1;
+    }
+    .image-container::after{
+      content: "After";
+      position: absolute;
+      /* top: 90%; */
+      /* right: 10%; */
+      bottom: 18px;
+      right: 18px;
+      color: var(--Black, #0B0F0E);
+      font-size: 16px;
+      line-height: 17.87px; /* 111.686% */
+
+    }
+    .slider {
+      position: absolute;
+      inset: 0;
+      cursor: pointer;
+      opacity: 0;
+      /* for Firefox */
+      width: 100%;
+      height: 100%;
+    }
+
+    .slider:focus-visible ~ .slider-button {
+      outline: 5px solid black;
+      outline-offset: 3px;
+    }
+
+    .slider-line {
+      display: block !important;
+      position: absolute;
+      inset: 0;
+      width: .1rem;
+      height: 100%;
+      background-color: #5B2790;
+      /* z-index: 10; */
+      left: var(--position);
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .slider-button {
+      position: absolute;
+      background-color: #fff;
+      color: black;
+      /* padding: .5rem; */
+      padding: 0;
+      border-radius: 100vw;
+      display: grid;
+      place-items: center;
+      top: 50%;
+      left: var(--position);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      /* z-index: 100; */
+    }
+
+  /* Before after slider style */
+
+
+  @media screen and (max-width: 990px){
+    .image__compare--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top-m }}px;
+      margin-bottom: {{ section.settings.margin_bottom-m }}px;
+      padding-top: {{ section.settings.padding_top-m }}px;
+      padding-bottom: {{ section.settings.padding_bottom-m }}px;
+    }
+   .image__compare--{{ section.id }} .image__compare-wrapper{
+      flex-direction: column-reverse;
+      gap: 18px;
+    }
+    .image__compare-wrapper > div{
+      flex: 0 0 100%;
+    }
+    .icmp__text{
+      {% if section.settings.alignment == "text" %} padding-right: 0; {% elsif section.settings.alignment == "image" %} padding-left: 0; {% endif %}
+    }
+    .icmp__text h2{
+      font-size: 24px;
+      line-height: 30px; /* 137.5% */
+      margin: 0 0 13px;
+    }
+    .icmp__before-text{
+      margin: 0 0 18px;
+    }
+    .icmp__before-text h4, .icmp__after-text h4{
+      color: var(--color1, #5B2790);
+      font-size: 15px;
+      line-height: 17px; /* 123.077% */
+      margin: 0 0 6px;
+    }
+    .icmp__before-text p, .icmp__after-text p{
+      font-size: 14px;
+      line-height: 20px; /* 150% */
+    }
+
+
+     /* Before after slider style */
+    .image-container::before, .image-container::after{
+      font-size: 9px;
+      line-height: 11px; /* 111.686% */
+    }
+    .image-container::before{
+      /* top: 93%; */
+      /* left: 5%; */
+      bottom: 11px;
+      left: 11px;
+    }
+    .image-container::after{
+      /* top: 93%; */
+      /* right: 5%; */
+      bottom: 11px;
+      right: 11px;
+    }
+     /* Before after slider style */
+  }
+</style>
+<section class="image__compare--{{ section.id }} {% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="image__compare-wrapper page-width">
+    <div class="icmp__text">
+      {% if section.settings.title != blank %}
+        <h2 data-aos="fade-down">{{ section.settings.title }}</h2>
+      {% endif %}
+      <div data-aos="fade-right" class="icmp__before-text">
+        <h4>{{ section.settings['before-title'] }}</h4>
+        <p>{{ section.settings.before__text }}</p>
+      </div>
+      <div data-aos="fade-left" class="icmp__after-text">
+        <h4>{{ section.settings['after-title'] }}</h4>
+        <p>{{ section.settings.after__text }}</p>
+      </div>
+    </div>
+    <div data-aos="zoom-in-up" class="icmp__slider">
+      <div class="container">
+        <div class="image-container">
+          {% if section.settings.image_before %}
+            <img
+              class="image-before slider-image"
+              src="{{ section.settings.image_before | img_url: "master" }}"
+              alt="Before Image"
+            >
+          {% endif %}
+          {% if section.settings.image_after %}
+            <img
+              class="image-after slider-image"
+              src="{{ section.settings.image_after | img_url: "master" }}"
+              alt="Before Image"
+            >
+          {% endif %}
+        </div>
+        <input type="range" min="0" max="100" value="50" aria-label="Percentage of before photo shown" class="slider">
+        <div class="slider-line" aria-hidden="true"></div>
+        <div class="slider-button pulse" id="btn-pulse" aria-hidden="true">
+          <svg width="43" height="44" viewBox="0 0 40 41" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="20" cy="20.5" r="19.2" stroke="#5B2790" stroke-width="2.625"/>
+            <path d="M17.0717 16.0822L9.85663 20.6229L17.3965 24.6009L17.0717 16.0822Z" fill="#5B2790"/>
+            <path d="M23.8092 16.0822L31.0242 20.6229L23.4844 24.6009L23.8092 16.0822Z" fill="#5B2790"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+var containers = document.querySelectorAll('.image__compare--{{ section.id }} .container');
+// var slidersbtn = document.getElementById('btn-pulse');
+//   slidersbtn.addEventListener('mouseover',function(){
+//     console.log('clicked')
+//   })
+containers.forEach((item) => {
+  console.log(item.offsetWidth);
+  item.querySelector(".image-container").style.width = item.offsetWidth  + "px";
+})
+document.querySelectorAll('.image__compare--{{ section.id }} .slider').forEach(slider => {
+    slider.addEventListener('input', (e) => {
+        var container = e.target.closest('.image__compare--{{ section.id }}').querySelector('.container');
+        container.style.setProperty('--position', `${e.target.value}%`);
+    });
+});
+</script>
+{% schema %}
+{
+  "name": "Image Comparision 2",
+  "settings": [
+    {
+      "type": "select",
+      "id": "alignment",
+      "label": "Content Alignment",
+      "options": [
+        {
+          "value": "image",
+          "label": "Image First"
+        },
+        {
+          "value": "text",
+          "label": "Text First"
+        }
+      ],
+      "default": "text"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "before-title",
+      "label": "Before Title"
+    },
+    {
+      "type": "textarea",
+      "id": "before__text",
+      "label": "Before Text"
+    },
+
+    {
+      "type": "image_picker",
+      "id": "image_before",
+      "label": "Image Before"
+    },
+    {
+      "type": "text",
+      "id": "after-title",
+      "label": "After Title"
+    },
+    {
+      "type": "textarea",
+      "id": "after__text",
+      "label": "After Text"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_after",
+      "label": "Image After"
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Desktop)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Spacing (Mobile)"
+    },
+    {
+      "type": "range",
+      "id": "margin_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 40
+    },
+    {
+      "type": "range",
+      "id": "padding_top-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom-m",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 0
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image Comparision 2"
+    }
+  ]
+}
+{% endschema %}

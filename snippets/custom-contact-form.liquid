@@ -1,0 +1,14 @@
+<form class="form-{{ id }}" action="#" method="post">
+  <div class="input-wp{{ id }}">
+    <input type="text" id="fname" name="firstname" placeholder="First Name" required>
+    <input type="text" id="lname" name="lastname" placeholder="Last Name" required>
+    <input type="email" id="email" name="email" placeholder="Email" required>
+    <input type="text" id="phone" name="phone" placeholder="Phone">
+  </div>
+    <textarea id="message" name="message" placeholder="Message"  required></textarea>
+   <div class="checkbox-{{ id }}">
+    <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">{{ section.settings.policy }}</label>
+    </div>           
+    <div class="btn_{{ id }}"><input class="button-font" type="submit" value="{{ section.settings.btn_text}}"></div>   
+</form>

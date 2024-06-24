@@ -1,0 +1,164 @@
+<style>
+  .section-container--{{ section.id }}{
+    margin-top: {{ section.settings.margin_top | append:'px' }};
+    margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+    padding-top: {{ section.settings.padding_top | append:'px' }};
+    padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+    overflow: hidden;
+    background-color: {{ section.settings.color }};
+    position: relative;
+    /* background-image: url("{{ section.settings.image | img_url: 'master' }}");
+    background-repeat: no-repeat;
+    background-size: 100% 50px;
+    background-position: top center; */
+  }
+  .shape--{{ section.id }} {
+    line-height: 0;
+  }
+  .shape--{{ section.id }} img {
+    width : 100%;
+    margin-block: -1px;
+  }
+
+  @media screen and (max-width: 768px){
+    .section-container--{{ section.id }}{
+      margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+      margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+      padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+      padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+      /* background-image: url("{{ section.settings.image_mobile | img_url: 'master' }}");
+      background-size: 100%; */
+    }
+
+  }
+</style>
+<section class="section-container--{{ section.id }}">
+  <div class="shape--{{ section.id }} desktop-only">
+    {{ section.settings.image | img_url: 'master' | img_tag }}
+  </div>
+  <div class="shape--{{ section.id }} mobile-only">
+    {{ section.settings.image_mobile | img_url: 'master' | img_tag }}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mali Shape",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "color",
+      "id": "color",
+      "label": "Section Background"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Shape"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile Shape"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": -100,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 0
+    }
+  ],
+  
+  "presets": [
+    {
+      "name": "Mali Shape"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,516 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  letter-spacing: 0;
+}
+img {
+  max-width: 100%;
+}
+h2 {
+  font-size: 45px;
+  color: #034872;
+  font-weight: 700;
+  margin-block: 10px;
+}
+h3 {
+  font-size: 20px;
+  /* color: #034872; */
+  font-weight: 700;
+}
+h4 {
+  /* font-size: 20px; */
+  /* color: #034872; */
+  /* font-weight: 700; */
+}
+h5 {
+  /* font-size: 20px; */
+  /* color: #034872; */
+  /* font-weight: 700; */
+}
+
+.absolute-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.mali-title {
+  color: #275e94;
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 600;
+}
+.mali-title span {
+  color: #00adbd;
+}
+@media screen and (max-width: 768px) {
+  .mali-title {
+    font-size: 26px;
+    text-align: center;
+  }
+}
+/* .left-column, .right-column {
+  width: calc(50% - 10px);
+} */
+
+/* Responsive Start */
+.mobile-only {
+  display: none !important;
+}
+@media screen and (max-width: 768px) {
+  .desktop-only {
+    display: none !important;
+  }
+  .mobile-only {
+    display: block !important;
+  }
+}
+/* Responsive End */
+
+/* Custom Buttons Start */
+.center-button-wrapper {
+  text-align: center;
+}
+a.custom-button {
+  display: inline-block;
+  color: #ffffff;
+  background-color: #034872;
+  text-decoration: none;
+  border: 1px solid #034872;
+  padding: 10px 45px;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+a.custom-button:hover {
+  color: #034872;
+  background-color: #ffffff;
+  border: 1px solid #454f5b2e;
+}
+a.custom-button-2 {
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #454f5b2e;
+  color: #034872;
+  text-decoration: none;
+  border: 1px solid #034872;
+  padding: 10px 45px;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+a.custom-button-2:hover {
+  background-color: #034872;
+  color: #ffffff;
+}
+a.custom-button-3 {
+  display: inline-block;
+  background-color: #ffffff;
+  border: 1px solid #454f5b2e;
+  color: #00aebf;
+  text-decoration: none;
+  border: 1px solid #034872;
+  padding: 10px 45px;
+  border-radius: 50px;
+  font-size: 14px;
+  transition: 0.3s;
+  font-weight: 600;
+}
+a.custom-button-3:hover {
+  background-color: #00aebf;
+  color: #ffffff;
+}
+@media screen and (max-width: 768px) {
+  a.custom-button {
+    padding: 5px 15px;
+    font-size: 12px;
+  }
+}
+a.blue-button-1 {
+  background: #6f60e9;
+  padding: 15px 40px;
+  border-radius: 10px;
+  color: #ffffff;
+  transition: 0.5s ease;
+  font-weight: 500;
+  text-decoration: none;
+}
+a.blue-button-1:hover {
+  background: #1b0177;
+  color: #5fc7cc;
+}
+a.white-button-1 {
+  background: #ffffff;
+  padding: 15px 40px;
+  border: 1px solid #5c439a;
+  border-radius: 25px;
+  color: #5c439a;
+  transition: 0.5s ease;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 19px;
+}
+a.white-button-1:hover {
+  background: #6f60e9;
+  color: #ffffff;
+}
+a.unstyled--link {
+  text-decoration: none;
+  color: #034872;
+  font-size: 13px;
+  line-height: 1em;
+}
+
+/* Custom Buttons End */
+
+/* Article Card styles Start */
+
+.article-card-wrapper {
+  /* background-color: #fef7ea; */
+  border: 1px solid #ebeef0fa;
+  border-radius: 20px;
+  position: relative;
+  transition: 0.3s ease;
+  text-align: center;
+}
+
+.article-card-wrapper:hover {
+  transform: scale3d(1.05, 1.05, 1.05);
+}
+.article-card-wrapper:hover p.article-contents {
+  color: #595959 !important;
+}
+
+.article-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.article-badge.custom-button {
+  color: #1b0177;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 10px;
+  font-size: 10px;
+  transition: 0.3s;
+  background-color: #ffffffb3;
+}
+.article-card-wrapper:hover .article-badge.custom-button {
+  color: #ffffff;
+  /* background-color: #1b0177; */
+  background-color: #5fc7cc;
+}
+.article-image-wrapper {
+  line-height: 0;
+}
+.article-image-wrapper img {
+  width: 100%;
+  border-radius: 20px 20px 0 0;
+}
+
+.article-content-wrapper {
+  padding-inline: 20px;
+}
+.article-title {
+  font-size: 18px;
+  line-height: 1.2em;
+  color: #1b0177;
+}
+p.article-contents {
+  font-size: 12px;
+  line-height: 1.2em;
+  text-align: justify;
+  color: #5e4d99;
+}
+a.custom-button.article-card-button {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  color: #1b0177;
+  padding: 5px 5px 5px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  transition: 0.3s;
+  float: inline-end;
+  margin-bottom: 10px;
+}
+a.custom-button.article-card-button svg {
+  max-width: 20px;
+  max-height: 20px;
+}
+a.custom-button.article-card-button:hover {
+  color: #ffffff;
+  background: #a7f2f6;
+  border-color: #a7f2f6;
+}
+a.custom-button.article-card-button svg circle {
+  transition: 0.3s ease;
+}
+a.custom-button.article-card-button:hover svg circle {
+  fill: #a7f2f6;
+}
+a.custom-button.article-card-button {
+  position: relative;
+  z-index: 4;
+}
+/* Article Card styles End */
+
+
+/* Mali Article Card Start */
+.article-card-wrapper.malibu {
+    border-radius: 0px;
+}
+
+.article-card-wrapper.malibu:hover {
+  transform: unset;
+}
+
+.article-card-wrapper.malibu .article-image-wrapper img {
+  border-radius: unset;
+}
+.article-card-wrapper.malibu .article-title {
+    font-size: 24px;
+    line-height: 1.2em;
+    color: #000;
+    text-align: left;
+    font-weight: 600;
+}
+.article-card-wrapper.malibu:hover .article-title {
+    color: #3a8dde;
+}
+.article-card-wrapper.malibu p.article-contents {
+    font-size: 14px;
+    line-height: 1.3em;
+    text-align: justify;
+    color: #000000!important;
+}
+.article-card-wrapper.malibu:hover p.article-contents {
+    color: #3a8dde!important;
+}
+/* Mali Article Card End */
+/* mali-analysis-card  Snippet Start */
+
+.analysis-card-wrapper {
+  background: #fef7ea;
+  padding: 10px;
+  border-radius: 20px;
+  color: rgb(27, 1, 119);
+  line-height: 0;
+  height: 100%;
+}
+.analysis-card-top-row {
+  position: relative;
+}
+p.analysis-card-sku {
+  font-size: 8px;
+  line-height: 10px;
+  font-weight: 600;
+}
+p.analysis-card-title {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+p.analysis-card-ingredients {
+  color: #5e4d99;
+  font-size: 18px;
+  font-weight: 600;
+}
+.analysis-card-image-wrapper {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+.analysis-card-image-wrapper img {
+  width: 100%;
+  margin-block: -15px;
+  z-index: 0;
+  position: relative;
+}
+.analysis-card-metadata-wrapper {
+  display: flex;
+  gap: 10px;
+  color: rgb(27, 1, 119);
+  letter-spacing: 0.1em;
+  font-size: 8px;
+  line-height: 1em;
+  text-align: center;
+  border-bottom: 1px solid #c7c7c7;
+  z-index: 2;
+  position: relative;
+}
+.analysis-single-metadata {
+  flex: 1;
+}
+p.analysis-single-metadata-label {
+  text-transform: uppercase;
+  font-size: 8px;
+  font-weight: 600;
+  margin-block: 0;
+}
+p.analysis-single-metadata-data {
+  font-size: 10px;
+  border: 2px solid #1b0177;
+  padding: 5px;
+  border-radius: 20px;
+  margin-top: 5px;
+}
+.analysis-card-batch-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 5px;
+}
+p.analysis-card-batch-id {
+  font-size: 16px;
+  font-weight: 400;
+}
+p.analysis-card-batch-id span {
+  font-weight: 600;
+}
+.analysis-card-batch-wrapper svg {
+  max-width: 25px;
+  max-height: 25px;
+}
+.analysis-card-batch-wrapper a:hover svg circle {
+  fill: ##01a6a5;
+}
+/* mali-analysis-card  Snippet End */
+
+/* Product Card Styles Start */
+.product-card-wrapper {
+  position: relative;
+  padding: 10px 10px 30px 10px;
+  /* border: 1px solid #1b017712; */
+  border-radius: 12px;
+  flex: 1;
+}
+.product-card-wrapper.mobile-card:after {
+    content: "";
+    background: #034872;
+    width: 60%;
+    height: 1px;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+}
+.product-card-wrapper .product-image-wrapper img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.product-card-wrapper .product-image-wrapper.mobile-card img {
+    width: fit-content;
+    aspect-ratio: unset;
+    object-fit: unset;
+    max-width: 100%;
+    display: block;
+    margin: auto;
+}
+.product-info-block {
+  text-align: center;
+}
+.product-title {
+  color: #034872;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0;
+  font-weight: 600;
+  transition: 0.5s ease;
+}
+.product-title.mobile-card {
+  font-size: 22px;
+  line-height: 1.3em;
+}
+.product-title:hover {
+    text-decoration: underline;
+}
+.product-meta {
+  color: #034872;
+  font-style: italic;
+  font-size: 13px;
+  line-height: 13px;
+  font-weight: 400;
+}
+.product-meta.mobile-card {
+  font-size: 18px;
+  line-height: 1.1em;
+}
+.product-price {
+  color: #00aebf;
+  font-size: 24px;
+  line-height: 24px;
+  font-weight: 700;
+}
+span.compare-at-price {
+    color: #034872;
+    -webkit-text-decorations-in-effect: line-through;
+    text-decoration: line-through;
+    opacity: .7;
+}
+a.buttton.add-to-cart-button {
+  background-color: #034872;
+  border-radius: 50px;
+  font-size: 12px;
+  padding: 5px 30px;
+  color: #ffffff;
+  text-decoration: none;
+  transition: 0.3s;
+}
+a.buttton.add-to-cart-button:hover {
+  background-color: #1b0177;
+}
+.product-card-wrapper:hover a.buttton.add-to-cart-button {
+  background-color: #00aebf;
+}
+
+/* Product Card Styles End */
+
+/* Mali caption Start  */
+
+.mali-caption {
+  position: absolute;
+  background: #ffffff8c;
+  border-radius: 20px;
+  display: grid;
+  max-width: 300px;
+  grid-template-rows: repeat(3, 0.5fr);
+  grid-template-columns: 100%;
+}
+.mali-caption svg {
+  position: relative;
+  margin: 8px 0px;
+  left: 12px;
+  grid-row: 1/2;
+  justify-self: start;
+  align-self: start;
+}
+.mali-caption p {
+  margin: 0px 12px;
+  grid-row: 2/3;
+  justify-self: start;
+  align-self: start;
+  font-size: 13px;
+  color: #000000;
+  font-weight: 400;
+  line-height: 1.2em;
+  text-align: justify;
+}
+.mali-caption h6 {
+  margin: 10px 12px;
+  grid-row: 3/4;
+  justify-self: start;
+  align-self: start;
+  color: #034872;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1.2em;
+  text-align: justify;
+}
+/* Mali caption End  */

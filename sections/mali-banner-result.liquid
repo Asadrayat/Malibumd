@@ -1,0 +1,335 @@
+<style>
+        .section-container--{{ section.id }}{
+          margin-top: {{ section.settings.margin_top | append:'px' }};
+          margin-bottom: {{ section.settings.margin_bottom | append:'px' }};
+          padding-top: {{ section.settings.padding_top | append:'px' }};
+          padding-bottom: {{ section.settings.padding_bottom | append:'px' }};
+          overflow: hidden;
+        }
+    .text-block--{{ section.id }} {
+        text-align: center;
+        margin-block: 60px;
+    }
+    .text-block--{{ section.id }} h1 {
+        margin: 0;
+        font-size: 56px;
+        font-weight: 500;
+        color: #034872;
+    }
+    .text-block--{{ section.id }} h3 {
+      color: #00aebf;
+      font-size: 29px;
+      font-weight: 600;
+      margin: 0;
+      position: relative;
+      width: max-content;
+      margin: auto;
+    }
+    .text-block--{{ section.id }} h3:after {
+        content: "";
+        position: absolute;
+        height: 4px;
+        background: #ffc020;
+        left: 50%;
+        top: 41%;
+        transform: translateX(-50%);
+        z-index: -2;
+        width: 130%;
+        /* rotate: -1deg; */
+    }
+    .text-block--{{ section.id }} h4 {
+        margin: 0;
+        font-size: 15px;
+        color: #000000;
+        font-weight: 500;
+    }
+
+
+      .image-block-{{ section.id }} {
+          position :relative;
+          min-height: 220px;
+          margin-block: 10px;
+      }
+      .image-block-{{ section.id }}  .image-slider-wrapper {
+          display: -webkit-inline-box;
+          align-items: center;
+          /* gap: 30px; */
+          position: absolute;
+          /* top: 50%; */
+          /* transform: translateY(-50%); */
+          /* overflow: hidden; */
+
+      }
+      .top-block-{{ section.id }} {
+        animation: xc 40s linear infinite;
+      }
+      .bottom-block-{{ section.id }} {
+        animation: xc 30s linear infinite;
+      }
+      @keyframes xc {
+        0% { left: -20%; }
+        100% { left: -100%;}
+      }
+      .image-block-{{ section.id }}  .image-slider-wrapper:hover {
+          animation-play-state: paused;
+      }
+      .image-block-{{ section.id }}  .slider-image {
+          border-radius: 20px;
+          overflow: hidden;
+          line-height: 0;
+          margin-right: 30px;
+      }
+      .image-block-{{ section.id }}  .slider-image img {
+          transition : 0.5s ease;
+      }
+      .image-block-{{ section.id }}  .slider-image:hover img {
+          transform : scale(1.1);
+      }
+
+        @media screen and (max-width: 768px){
+          .section-container--{{ section.id }}{
+            margin-top: {{ section.settings.margin_top_mobile | append:'px' }};
+            margin-bottom: {{ section.settings.margin_bottom_mobile | append:'px'  }};
+            padding-top: {{ section.settings.padding_top_mobile | append:'px' }};
+            padding-bottom: {{ section.settings.padding_bottom_mobile | append:'px' }};
+          }
+.text-block--{{ section.id }} {
+    margin-block: 10px;
+}
+  .text-block--{{ section.id }} h1 {
+    /* font-size: 22px; */
+    font-size: 34px;
+    line-height: 1;
+    max-width: 300px;
+    margin: 15px auto;
+  }
+  .text-block--{{ section.id }} h3 {
+      font-size: 30px;
+  }
+  .text-block--{{ section.id }} h3:after {
+          width: 320px;
+    top: 50%;
+    height: 5px;
+  }
+  .text-block--{{ section.id }} h4 {
+    font-size: 14px;
+    line-height: 1.5em;
+    max-width: 400px;
+    margin: 15px auto;
+  }
+            .image-block-{{ section.id }} {
+              min-height: 200px;
+              margin-block: 20px;
+            }
+            .image-block-{{ section.id }}  .slider-image {
+              max-width: 300px;
+              max-height: 300px;
+            }
+
+        }
+</style>
+<section class="section-container--{{ section.id }} {% if section.settings.hide_section %} mobile-only {% endif %} ">
+  <div class="section-wrapper--{{ section.id }} page-width">
+    <div class="text-block--{{ section.id }} {% if section.settings.hide_text %} desktop-only {% endif %}   ">
+      <h3>{{ section.settings.caption }}</h3>
+      <h1>{{ section.settings.title }}</h1>
+      <h4>{{ section.settings.subtitle }}</h4>
+    </div>
+
+    <div class="image-block-{{ section.id }} top-block-{{ section.id }}  {% if section.settings.hide_top_row %} desktop-only {% endif %} ">
+      <div class="image-slider-wrapper">
+        {% for i in (1..4) %}
+          {% for block in section.blocks %}
+            {% if block.type == 'top_row_image' %}
+              <div class="slider-image">
+                {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    <div class="image-block-{{ section.id }} bottom-block-{{ section.id }} {% if section.settings.hide_bottom_row %} desktop-only {% endif %} ">
+      <div class="image-slider-wrapper">
+        {% for i in (1..4) %}
+          {% for block in section.blocks %}
+            {% if block.type == 'bottom_row_image' %}
+              <div class="slider-image">
+                {{ block.settings.image | img_url: 'master' | img_tag: loading: 'lazy' }}
+              </div>
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Mali Banner Result",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption"
+    },
+     {
+      "type": "checkbox",
+      "id": "hide_section",
+      "label": "Hide Section on Desktop",
+      "default": false
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_text",
+      "label": "Hide text on Mobile",
+      "default": false
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_top_row",
+      "label": "Hide Top Row Images on Mobile",
+      "default": false
+    },
+        {
+      "type": "checkbox",
+      "id": "hide_bottom_row",
+      "label": "Hide Bottom Row Images on Mobile",
+      "default": false
+    },
+    {
+      "type": "color",
+      "id": "bg-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "header",
+      "content": "Desktop Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top",
+      "default": 50
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Mobile Spacing"
+    },
+    {
+      "type": "range",
+      "id": "margin_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Top (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Margin Bottom (Mobile)",
+      "default": 10
+    },
+    {
+      "type": "range",
+      "id": "padding_top_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Top  (Mobile)",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_mobile",
+      "min": 0,
+      "max": 200,
+      "step": 2,
+      "unit": "px",
+      "label": "Padding Bottom  (Mobile)",
+      "default": 20
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Top Row Image",
+      "type": "top_row_image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    },
+    {
+      "name": "Bottom Row Image",
+      "type": "bottom_row_image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Mali Banner Result"
+    }
+  ]
+}
+{% endschema %}

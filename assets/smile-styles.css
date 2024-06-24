@@ -1,0 +1,53 @@
+
+/* Smile Caption Start */
+.single_caption {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+.single-caption-text-block {
+  background: #ffffff;
+  border: 2px solid #000000;
+  border-radius: 10px;
+  padding: 10px;
+  max-width: 300px;
+  z-index: 2;
+}
+.caption-wrapper {
+  position: relative;
+}
+span.caption-right-arrow {
+  transform: translateX(-10px);
+  z-index: 1;
+}
+span.caption-left-arrow {
+  transform: translateX(10px);
+  z-index: 1;
+}
+.single-caption-text-block h4 {
+  color: #6f60e9;
+  font-size: 14px;
+  margin-block: 0;
+}
+.single-caption-text-block p {
+  color: #000000;
+  font-size: 12px;
+  margin-block: 0;
+  line-height: 1.2;
+}
+.single-caption-text-block p {
+  max-width: 150px;
+}
+@media screen and (max-width: 768px) {
+  span.caption-right-arrow {
+    transform: translate(-30px) scale(0.6);
+  }
+  span.caption-left-arrow {
+    transform: translate(30px) scale(0.6);
+  }
+  .single-caption-text-block p {
+    max-width: 150px;
+  }
+}
+/* Smile Caption End */
